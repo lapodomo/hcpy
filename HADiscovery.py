@@ -36,7 +36,7 @@ DISABLED_ENTITIES = [
 # Exceptions to the above
 DISABLED_EXCEPTIONS = ["Refrigeration.Common.Status.Door."]
 
-USE_LAST_FQDN_PARTS = ["LaundryCare.Washer.Status","LaundryCare.Washer.Setting"]
+USE_LAST_FQDN_PARTS = ["LaundryCare.Washer.Status.","LaundryCare.Washer.Setting."]
 
 
 def publish_ha_discovery(device, client, mqtt_topic):
