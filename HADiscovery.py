@@ -36,6 +36,8 @@ DISABLED_ENTITIES = [
 # Exceptions to the above
 DISABLED_EXCEPTIONS = ["Refrigeration.Common.Status.Door."]
 
+USE_LAST_FQDN_PARTS = ["LaundryCare.Washer.Status","LaundryCare.Washer.Setting"]
+
 
 def publish_ha_discovery(device, client, mqtt_topic):
     print(f"{now()} Publishing HA discovery for {device['name']}")
@@ -94,6 +96,13 @@ def publish_ha_discovery(device, client, mqtt_topic):
                 friendly_name = name
                 break
 
+        for fqdn in USE_LAST_FQDN_PARTS:
+        if fqdn in name:
+        dot_count = fqdn.count(".")
+        parts = name.split(".")
+        friendly_name = " ".join(parts[dot_count + 1:])
+        break
+            
         feature_id = name.lower().replace(".", "_")
         refCID = feature.get("refCID", None)
         refDID = feature.get("refDID", None)
